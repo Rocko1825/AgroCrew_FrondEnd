@@ -1,0 +1,8 @@
+# Despliegue en Netlify desde GitHub: compila Angular y publica la carpeta del navegador.
+# Las redirecciones (/api/* al backend de Elastic Beanstalk y el fallback de rutas) están en public/_redirects.
+[build]
+  command = "npm run build"
+  publish = "dist/agrocrew-frontend/browser"
+
+[build.environment]
+  NODE_VERSION = "24"
