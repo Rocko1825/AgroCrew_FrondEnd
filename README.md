@@ -79,6 +79,22 @@ src/
         └── admin/           Usuarios, cultivos y datos económicos (administrador)
 ```
 
+## Módulos del equipo
+
+El proyecto se sube al repositorio por módulos, repartidos entre el equipo:
+
+| Orden | Módulo | Contenido |
+|---|---|---|
+| 1 | Core | Configuración del proyecto, `app.*`, `core/` (guards, interceptores, modelos, idioma y servicios transversales) |
+| 2 | Shared UI | `shared/` (componentes, pipes, utilidades), `layout/`, estilos globales y `public/` |
+| 3 | Auth | Acceso, recuperar y restablecer contraseña, perfil, privacidad y página no encontrada |
+| 4 | Predios | Mis predios, registro/edición, detalle y sus secciones |
+| 5 | Evaluaciones | Evaluar, resultado, ranking, factores, rentabilidad, historial, alertas y mapa de riesgo |
+| 6 | Dashboard y Admin | Dashboard por zona y administración de usuarios, cultivos y datos económicos |
+
+Antes de subir cambios: `git pull origin main`. Mientras falten módulos, `npm run build` no compila porque las rutas
+de `app.routes.ts` apuntan a pantallas que todavía no están en el repositorio.
+
 ## Pantallas y rutas
 
 | Ruta | Rol | Historias |
