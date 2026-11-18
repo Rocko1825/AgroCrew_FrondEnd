@@ -1,6 +1,7 @@
 {
   "name": "agrocrew-frontend",
   "version": "0.0.0",
+  "description": "Aplicación web de AgroCrew (Angular) para productores, asesores y administradores.",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
