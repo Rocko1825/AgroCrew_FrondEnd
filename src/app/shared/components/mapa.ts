@@ -151,6 +151,14 @@ export class Mapa {
     if (!this.mapa) {
       return;
     }
+    // Si hay una ventana abierta, se vuelve a abrir tras redibujar (al moverse el mapa se recargan los puntos).
+    let abierto: L.LatLng | null = null;
+    this.capaMarcadores.eachLayer((capa) => {
+      if (capa instanceof L.CircleMarker && capa.isPopupOpen()) {
+        abierto = capa.getLatLng();
+      }
+    });
+    let reabrir: L.CircleMarker | null = null;
     this.capaMarcadores.clearLayers();
     this.circulosPorId.clear();
     for (const m of this.marcadores()) {
@@ -173,7 +181,12 @@ export class Mapa {
         circulo.on('click', () => this.marcadorPulsado.emit(id));
       }
       this.capaMarcadores.addLayer(circulo);
+      const previo = abierto as L.LatLng | null;
+      if (m.popup && previo && previo.lat === m.latitud && previo.lng === m.longitud) {
+        reabrir = circulo;
+      }
     }
+    (reabrir as L.CircleMarker | null)?.openPopup();
     this.aplicarResaltado();
     const lista = this.marcadores();
     if (this.ajustar() && !this.yaAjustado && lista.length > 0) {
