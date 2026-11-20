@@ -162,10 +162,7 @@ export class Mapa {
         fillOpacity: 0.95,
       });
       if (m.popup) {
-        const contenido = document.createElement('div');
-        contenido.style.whiteSpace = 'pre-line';
-        contenido.textContent = m.popup;
-        circulo.bindPopup(contenido);
+        circulo.bindPopup(this.contenidoPopup(m.popup));
       }
       if (m.titulo) {
         circulo.bindTooltip(m.titulo);
@@ -184,6 +181,39 @@ export class Mapa {
       const limites = L.latLngBounds(lista.map((m) => [m.latitud, m.longitud] as L.LatLngTuple));
       this.mapa.fitBounds(limites.pad(0.25), { maxZoom: 13 });
     }
+  }
+
+  /**
+   * Ventana emergente compacta: la primera línea es el título y el resto se muestra como «Etiqueta: valor».
+   * Se arma con textContent (nunca como HTML).
+   */
+  private contenidoPopup(texto: string): HTMLElement {
+    const [titulo, ...lineas] = texto.split(/\r?\n/).filter((l) => l.trim());
+    const caja = document.createElement('div');
+    caja.className = 'popup-mapa';
+    const cabeza = document.createElement('strong');
+    cabeza.className = 'popup-titulo';
+    cabeza.textContent = titulo ?? '';
+    caja.appendChild(cabeza);
+    if (lineas.length) {
+      const lista = document.createElement('dl');
+      for (const linea of lineas) {
+        const corte = linea.indexOf(':');
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        if (corte > 0) {
+          dt.textContent = linea.slice(0, corte).trim();
+          dd.textContent = linea.slice(corte + 1).trim();
+        } else {
+          dd.textContent = linea;
+          dd.style.gridColumn = '1 / -1';
+        }
+        if (dt.textContent) lista.appendChild(dt);
+        lista.appendChild(dd);
+      }
+      caja.appendChild(lista);
+    }
+    return caja;
   }
 
   private aplicarResaltado(): void {
