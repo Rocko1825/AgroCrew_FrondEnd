@@ -396,3 +396,14 @@ html [data-sonner-toaster][data-sonner-theme] {
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
+/* ---------- Selector segmentado y teclas (filtros de Mis predios y Alertas) ---------- */
+.segmentado {
+  display: inline-flex; padding: 4px; gap: 2px; border-radius: 999px; background: var(--color-superficie-2); border: 1px solid var(--color-borde);
+  button {
+    border: 0; background: transparent; font: inherit; font-size: 0.9rem; color: var(--color-texto-suave);
+    padding: 6px 14px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    span { font-size: 0.75rem; font-weight: 700; padding: 0 7px; border-radius: 999px; background: var(--color-pista); font-variant-numeric: tabular-nums; }
+    &.activo { background: var(--color-superficie); color: var(--color-texto); font-weight: 600; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+    &.activo span { background: var(--color-marca-claro); color: var(--color-acento); }
+  }
+}
