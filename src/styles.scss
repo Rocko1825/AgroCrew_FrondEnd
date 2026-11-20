@@ -407,3 +407,10 @@ html [data-sonner-toaster][data-sonner-theme] {
     &.activo span { background: var(--color-marca-claro); color: var(--color-acento); }
   }
 }
+/* Botón cuadrado solo con ícono (anterior / siguiente / cerrar). */
+.btn-icono {
+  display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--color-borde); background: var(--color-superficie); color: var(--color-texto);
+  &:disabled { opacity: 0.4; cursor: default; }
+  &:not(:disabled):hover { background: var(--color-superficie-2); }
+}
