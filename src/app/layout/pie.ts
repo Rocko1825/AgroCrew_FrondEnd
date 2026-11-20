@@ -22,7 +22,7 @@ const REDES = [
     <footer class="pie">
       <div class="contenedor columnas">
         <div class="col-marca">
-          <p class="marca"><img src="logo.svg" alt="" width="28" height="28"> <strong>AgroCrew</strong></p>
+          <p class="marca"><img src="logo.svg?v=2" alt="" width="28" height="28"> <strong>AgroCrew</strong></p>
           <p class="texto">{{ 'Descubre qué cultivos son compatibles con tu terreno, con datos oficiales de suelo, clima y riesgo.' | t }}</p>
           <ul class="redes" [attr.aria-label]="'Redes sociales' | t">
             @for (r of redes; track r.nombre) {
