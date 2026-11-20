@@ -162,7 +162,7 @@ export class Mapa {
         fillOpacity: 0.95,
       });
       if (m.popup) {
-        circulo.bindPopup(this.contenidoPopup(m.popup));
+        circulo.bindPopup(() => this.contenidoPopup(m.popup!), this.opcionesPopup());
       }
       if (m.titulo) {
         circulo.bindTooltip(m.titulo);
@@ -214,6 +214,22 @@ export class Mapa {
       caja.appendChild(lista);
     }
     return caja;
+  }
+
+  /** Ajusta la ventana al tamaño del mapa para que siempre se vea completa sin arrastrar. */
+  private opcionesPopup(): L.PopupOptions {
+    const alto = this.mapa?.getSize().y ?? 400;
+    const ancho = this.mapa?.getSize().x ?? 400;
+    return {
+      maxWidth: Math.min(300, ancho - 60),
+      minWidth: Math.min(220, ancho - 60),
+      maxHeight: Math.max(140, alto - 90),
+      autoPan: true,
+      autoPanPaddingTopLeft: [20, 20],
+      autoPanPaddingBottomRight: [20, 20],
+      keepInView: true,
+      className: 'popup-agrocrew',
+    };
   }
 
   private aplicarResaltado(): void {
