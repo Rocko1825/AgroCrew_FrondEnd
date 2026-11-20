@@ -346,6 +346,14 @@ tbody tr:hover { background: var(--color-superficie-2); }
 :root[data-theme='dark'] .leaflet-tooltip { background: var(--color-superficie); color: var(--color-texto); border-color: var(--color-borde); }
 :root[data-theme='dark'] .leaflet-bar a { background: var(--color-superficie); color: var(--color-texto); border-color: var(--color-borde); }
 :root[data-theme='dark'] .leaflet-control-attribution { background: rgba(23, 32, 25, 0.8); color: var(--color-texto-suave); }
+/* Ventana de información de los puntos: compacta y con desplazamiento interno si el texto es largo. */
+.popup-agrocrew .leaflet-popup-content-wrapper { border-radius: 12px; }
+.popup-agrocrew .leaflet-popup-content { margin: 12px 14px; font-size: 0.85rem; line-height: 1.4; }
+.popup-mapa { display: grid; gap: 8px; overflow-wrap: anywhere; }
+.popup-titulo { font-size: 0.9rem; line-height: 1.35; padding-right: 14px; }
+.popup-mapa dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 0; }
+.popup-mapa dt { color: var(--color-texto-suave); white-space: nowrap; }
+.popup-mapa dd { margin: 0; font-weight: 600; }
 
 /* ---------- Notificaciones (ngx-sonner) con los colores de la guía de estilo ---------- */
 html [data-sonner-toaster][data-sonner-theme] {
@@ -387,3 +395,4 @@ html [data-sonner-toaster][data-sonner-theme] {
   }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+
