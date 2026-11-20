@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../environments/environment';
 import { AuthService } from '../core/services/auth.service';
 import { TPipe } from '../shared/pipes/t.pipe';
 
@@ -24,6 +25,7 @@ const REDES = [
         <div class="col-marca">
           <p class="marca"><img src="logo.svg?v=2" alt="" width="28" height="28"> <strong>AgroCrew</strong></p>
           <p class="texto">{{ 'Descubre qué cultivos son compatibles con tu terreno, con datos oficiales de suelo, clima y riesgo.' | t }}</p>
+          <p class="texto"><a class="conoce" [href]="landingUrl">{{ 'Conoce AgroCrew' | t }} →</a></p>
           <ul class="redes" [attr.aria-label]="'Redes sociales' | t">
             @for (r of redes; track r.nombre) {
               <li>
@@ -78,6 +80,7 @@ const REDES = [
     ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
     a { color: var(--color-gris-verdoso); text-decoration: none; font-size: 0.92rem; }
     a:hover, a:focus-visible { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; }
+    .conoce { color: #FFFFFF; font-weight: 600; }
     .suave { color: var(--color-gris-verdoso); font-size: 0.92rem; }
     .marca { display: inline-flex; align-items: center; gap: 8px; font-size: 1.15rem; margin: 0 0 10px; }
     .texto { color: var(--color-gris-verdoso); font-size: 0.92rem; max-width: 340px; margin: 0 0 18px; }
@@ -102,6 +105,7 @@ export class Pie {
   protected readonly correo = CORREO_CONTACTO;
   protected readonly telefono = TELEFONO_CONTACTO;
   protected readonly redes = REDES;
+  protected readonly landingUrl = environment.landingUrl;
 
   /** Accesos según el rol de la sesión; sin sesión, solo el ingreso. */
   protected readonly categorias = computed(() => {

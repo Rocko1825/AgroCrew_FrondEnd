@@ -6,4 +6,6 @@
 export const environment = {
   production: true,
   apiUrl: '/api/v1',
+  /** Landing de presentación publicada en Netlify. */
+  landingUrl: 'https://agrocrew.netlify.app',
 };
